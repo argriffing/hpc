@@ -31,7 +31,7 @@ to your home directory.
 Installing software from source
 -------------------------------
 
-Because I only have enough disk quota in ``/home`` for a few dotfiles,
+Because I only have enough disk quota in ``/home`` for a few dotfiles_,
 installed programs such as git and python are prefixed to
 ``/brc_share/brc/username/install``.
 
@@ -65,7 +65,7 @@ Installing python packages under bash
 
 The bash shell can make use of the ``activate`` and ``deactivate``
 commands provided by virtualenv.
-Activate a virutal environment as follows::
+Activate a virtual environment as follows::
 
     $ . /path/to/myenv/bin/activate
 
@@ -91,3 +91,4 @@ and go back to using the system python environment as follows::
 .. _virtualenv: http://pypi.python.org/pypi/virtualenv
 .. _byobu: https://launchpad.net/byobu
 .. _screen: http://en.wikipedia.org/wiki/GNU_Screen
+.. _dotfiles: http://en.wikipedia.org/wiki/Dot_file
