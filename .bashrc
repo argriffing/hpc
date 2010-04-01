@@ -36,6 +36,13 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# editor aliases
+alias vi='vim'
+alias view='vim -R'
+
+# define the default editor
+export EDITOR="vim"
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
