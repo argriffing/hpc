@@ -6,8 +6,17 @@ and its LSF-related commands include
 ``bsub``, ``bhist``, ``bjobs``, ``bqueues``, ``bpeek``, and ``bkill``.
 The Red Hat version is Enterprise AS release 4 (Nahant Update 5),
 and the shell is tcsh_.
-Some of the guts of the cluster apparently depend on this shell,
-so changing the shell is discouraged.
+
+Changing shells
+---------------
+
+To change from tcsh to bash::
+
+    chsh -s /bin/bash
+
+Note that this could cause problems.
+The ``add`` scripts only work with tcsh.
+Also, the compute nodes use tcsh.
 
 Installing software from source
 -------------------------------
