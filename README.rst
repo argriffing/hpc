@@ -18,6 +18,16 @@ Note that this could cause problems.
 The ``add`` scripts only work with tcsh.
 Also, the compute nodes use tcsh.
 
+Using ``screen``
+----------------
+
+If you want to leave a terminal open while you work on something else,
+or if you want to leave a terminal open so that you can work on it from
+a different login, then gnu screen_ is useful.
+It has been enhanced for Ubuntu as byobu_ and can be installed
+on the hpc by extracting http://people.ubuntu.com/~kirkland/byobu/byobu.tar.gz
+to your home directory.
+
 Installing software from source
 -------------------------------
 
@@ -79,3 +89,5 @@ and go back to using the system python environment as follows::
 .. _argparse: http://code.google.com/p/argparse/
 .. _setuptools: http://pypi.python.org/pypi/setuptools
 .. _virtualenv: http://pypi.python.org/pypi/virtualenv
+.. _byobu: https://launchpad.net/byobu
+.. _screen: http://en.wikipedia.org/wiki/GNU_Screen
