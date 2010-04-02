@@ -6,6 +6,8 @@ and its LSF-related commands include
 ``bsub``, ``bhist``, ``bjobs``, ``bqueues``, ``bpeek``, and ``bkill``.
 The Red Hat version is Enterprise AS release 4 (Nahant Update 5),
 and the shell is tcsh_.
+More info about the cluster is here:
+http://www.ncsu.edu/itd/hpc/Documents/BladeCenter/GettingStartedbc.php
 
 Changing shells
 ---------------
@@ -44,6 +46,15 @@ a different login, then gnu screen_ is useful.
 It has been enhanced for Ubuntu as byobu_ and can be installed
 on the hpc by extracting http://people.ubuntu.com/~kirkland/byobu/byobu.tar.gz
 to your home directory.
+
+Using ``bsub``
+--------------
+
+The program called bsub is the primary way to access
+the resources of an LSF cluster.
+The example bsub script can be run as follows::
+
+    $ bsub < hello.bsub
 
 Installing software from source
 -------------------------------
