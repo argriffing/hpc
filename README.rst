@@ -14,11 +14,16 @@ To change from tcsh to bash::
 
     chsh -s /bin/bash
 
-Note that this could cause problems.
-The ``add`` scripts only work with tcsh.
-Also, the compute nodes use tcsh.
-The tcsh shell is already configured with a bunch of paths
-and environment variables required for LSF.
+Note that this could cause problems:
+
+- The ``add`` scripts only work with tcsh.
+- The compute nodes use tcsh.
+- The tcsh shell is already configured with a bunch of paths
+  and environment variables required for LSF.
+
+The shell change does not take effect until you log out and back in again.
+Furthermore, if you log in to the generic login address and it sends
+you to a different login node, then you will need to chsh again and re-login.
 
 Startup files
 -------------
@@ -26,6 +31,10 @@ Startup files
 This web page has some information about which startup file
 is sourced at which time for each shell.
 http://hayne.net/MacDev/Notes/unixFAQ.html#loginShell
+
+I think that the same startup files are used regardless
+of the specific login node,
+unlike the node-specific conditions encountered for chsh.
 
 Using ``screen``
 ----------------
