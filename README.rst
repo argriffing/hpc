@@ -17,7 +17,6 @@ To change from tcsh to bash::
 Note that this could cause problems:
 
 - The ``add`` scripts only work with tcsh.
-- The compute nodes use tcsh.
 - The tcsh shell is already configured with a bunch of paths
   and environment variables required for LSF.
 
