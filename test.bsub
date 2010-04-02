@@ -1,4 +1,3 @@
-#!/bin/tcsh
 #BSUB -o test.bsub.out
 #BSUB -e test.bsub.err
 #BSUB -M 1000

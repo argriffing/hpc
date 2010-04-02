@@ -1,0 +1,6 @@
+#BSUB -o hello.out
+#BSUB -e hello.err
+#BSUB -M 1000       # limit to one megabyte of memory
+#BSUB -W 1          # limit to one minute of wall time
+
+echo "Hello bsub!"
