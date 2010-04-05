@@ -28,10 +28,13 @@ def main(args):
         # for a total of 20 bytes.
         nbytes_per_position = 20
         npositions_per_file = 1000000
+        # define the time and memory required for the job
+        nminutes = 5
+        nkilobytes = 1000
         # create the job
         b = lsf.Bsub()
         b.flags = {
-                'W': 120, 'M': 1000,
+                'W': nminutes, 'M': nkilobytes,
                 'o': 'out', 'e': 'err'}
         if args.queue:
             b.flags['q'] = args.queue
