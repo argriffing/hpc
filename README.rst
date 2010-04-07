@@ -9,6 +9,9 @@ and the shell is tcsh_.
 More info about the cluster is here:
 http://www.ncsu.edu/itd/hpc/Documents/BladeCenter/GettingStartedbc.php
 
+Basic LSF commands (this webpage is for a different cluster):
+http://kipac-prod.stanford.edu/collab/computing/docs/lsfbasics
+
 Changing shells
 ---------------
 
