@@ -4,6 +4,7 @@ This could be done better using something like pyLSF
 to access the LSF API directly.
 """
 
+import getpass
 import re
 import subprocess
 from subprocess import PIPE
@@ -15,6 +16,29 @@ def nonempty_stripped_lines(lines):
         line = raw_line.strip()
         if line:
             yield line
+
+def bswitch(target_queue, jnum):
+    """
+    Switch a job to a different queue.
+    @param target_queue: the job will go into this queue
+    @param jnum: the id of the job to switch
+    """
+    cmd = ['bswitch', target_queue, str(jnum)]
+    p = subprocess.Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    out, err = p.communicate()
+    sys.stdout.write(out)
+    sys.stderr.write(err)
+
+def gen_accessible_queues():
+    cmd = ['bqueues', '-u', getpass.getuser()]
+    p = subprocess.Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    out, err = p.communicate()
+    lines = list(nonempty_stripped_lines(out.splitlines()))
+    if lines:
+        header_line, data_lines = lines[0], lines[1:]
+        for line in data_lines:
+            queue, rest = line.split(None, 1)
+            yield queue
 
 def _get_bsub_job_number(bsub_output):
     """
