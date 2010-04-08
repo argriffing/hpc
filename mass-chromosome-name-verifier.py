@@ -20,7 +20,7 @@ class Job:
     """
     Instantiation submits a job.
     """
-    def __init__(self, datapath, exepath, outpath):
+    def __init__(self, datapath, exepath, outpath, queue):
         self.b = lsf.Bsub()
         self.datapath = datapath
         self.exepath = exepath
@@ -28,6 +28,8 @@ class Job:
         self.b.flags = {
                 'W': 10, 'M': 1000,
                 'o': 'out', 'e': 'err'}
+        if queue:
+            self.b.flags['q'] = queue
         cmd = 'zcat %s | %s > %s' % (datapath, exepath, outpath)
         self.b.commands = [cmd]
         out, err = self.b.submit()
@@ -61,7 +63,7 @@ def main(args):
     for datapath in args.files:
         gzname = os.path.basename(datapath)
         outpath = os.path.join(args.scratch, gzname + '.names')
-        job = Job(datapath, exepath, outpath)
+        job = Job(datapath, exepath, outpath, args.queue)
         number_to_job[job.b.job_number] = job
     # initialize the set of unfinished job numbers
     all_numbers = set(number_to_job)
@@ -80,6 +82,8 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--queue',
+            help='submit to this LSF queue')
     parser.add_argument('--expected', required=True,
             help='a file containing the expected chromosome names')
     parser.add_argument('--scratch', default='',
