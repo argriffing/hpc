@@ -125,6 +125,6 @@ if __name__ == '__main__':
             default='get-pileup-chromosome-names',
             help='name of the executable')
     parser.add_argument('files', nargs='+',
-            help='gzipped pileup files')
+            help='pileup files')
     args = parser.parse_args()
     main(args)

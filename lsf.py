@@ -17,6 +17,21 @@ def nonempty_stripped_lines(lines):
         if line:
             yield line
 
+def bhist(jnums):
+    """
+    Get the history for some job numbers.
+    Yield (job id, run wall seconds) pairs.
+    """
+    cmd = ['bhist'] + [str(k) for k in jnums]
+    p = subprocess.Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    out, err = p.communicate()
+    lines = list(nonempty_stripped_lines(out.splitlines()))
+    if lines:
+        header_lines, data_lines = lines[:2], lines[2:]
+        for line in data_lines:
+            JOBID, USER, JOB_NAME, PEND, PSUSP, RUN, rest = line.split(None, 6)
+            yield int(JOBID), int(RUN)
+
 def bswitch(target_queue, jnum):
     """
     Switch a job to a different queue.
