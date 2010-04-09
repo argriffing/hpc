@@ -22,12 +22,11 @@ def bswitch(target_queue, jnum):
     Switch a job to a different queue.
     @param target_queue: the job will go into this queue
     @param jnum: the id of the job to switch
+    @return: (out, err)
     """
     cmd = ['bswitch', target_queue, str(jnum)]
     p = subprocess.Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-    out, err = p.communicate()
-    sys.stdout.write(out)
-    sys.stderr.write(err)
+    return p.communicate()
 
 def gen_accessible_queues():
     cmd = ['bqueues', '-u', getpass.getuser()]
@@ -84,8 +83,26 @@ class Bsub:
     def __str__(self):
         return '\n'.join(self.gen_lines())
 
+def bjobs():
+    """
+    Yield tuples (jobid, state, queue)
+    """
+    # -w suppresses truncation
+    p = subprocess.Popen(['bjobs', '-w'], stdout=PIPE, stderr=PIPE)
+    out, err = p.communicate()
+    lines = list(nonempty_stripped_lines(out.splitlines()))
+    if lines:
+        header_line, data_lines = lines[0], lines[1:]
+        for line in data_lines:
+            try:
+                JOBID, USER, STAT, QUEUE, rest = line.split(None, 4)
+            except ValueError, e:
+                raise Exception('error: %s\n in line: %s' % (e, line))
+            yield (int(JOBID), STAT, QUEUE)
+    
 def gen_unfinished_job_numbers():
-    p = subprocess.Popen(['bjobs'], stdout=PIPE, stderr=PIPE)
+    # -w suppresses truncation
+    p = subprocess.Popen(['bjobs', '-w'], stdout=PIPE, stderr=PIPE)
     out, err = p.communicate()
     lines = list(nonempty_stripped_lines(out.splitlines()))
     if lines:
