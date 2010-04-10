@@ -24,12 +24,16 @@ def switch(qname, jnum):
     sys.stderr.write(err)
 
 class Job:
-    def __init__(self, datapath, exepath):
+    def __init__(self, datapath, exepath, index):
         self.b = lsf.Bsub()
         self.datapath = datapath
         self.exepath = exepath
+        jobname = 'job.%d' % index
+        nminutes = 15
+        nkilobytes = 1000
         self.b.flags = {
-                'W': 10, 'M': 1000,
+                'J': jobname,
+                'W': nminutes, 'M': nkilobytes,
                 'o': 'out', 'e': 'err'}
         if datapath.endswith('.gz'):
             catcmd = 'zcat'
@@ -51,7 +55,7 @@ def process(filenames, exepath, queues):
     for i, datapath in enumerate(filenames):
         gzname = os.path.basename(datapath)
         outpath = os.path.join(gzname + '.names.' + str(i))
-        jobs.append(Job(datapath, exepath))
+        jobs.append(Job(datapath, exepath, i))
     # submit all of the jobs to the debug queue
     number_to_job = {}
     for job in jobs:
