@@ -1,6 +1,12 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # Much of this is copied from a default Ubuntu .bashrc file.
 
+# add eigensoft to the path
+export PATH=/brc_share/brc/argriffi/repos/eigensoft/bin:$PATH
+
+# add the non-admin installed executable files to the path
+export PATH=/brc_share/brc/argriffi/install/bin:$PATH
+
 # add LSF-specific stuff to the path
 export PATH=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/bin:$PATH
 export PATH=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/etc:$PATH
@@ -19,9 +25,6 @@ export EGO_LIBDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/lib
 export EGO_CONFDIR=/usr/local/lsf/conf/ego/sam/kernel
 export EGO_LOCAL_CONFDIR=/usr/local/lsf/conf/ego/sam/kernel
 export EGO_ESRVDIR=/usr/local/lsf/conf/ego/sam/eservice
-
-# add the non-admin installed executable files to the path
-export PATH=/brc_share/brc/argriffi/install/bin:$PATH
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
