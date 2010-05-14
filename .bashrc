@@ -7,24 +7,29 @@ export PATH=/brc_share/brc/argriffi/repos/eigensoft/bin:$PATH
 # add the non-admin installed executable files to the path
 export PATH=/brc_share/brc/argriffi/install/bin:$PATH
 
-# add LSF-specific stuff to the path
-export PATH=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/bin:$PATH
-export PATH=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/etc:$PATH
+# replace the LSF stuff with the following line
+. /usr/local/lsf/conf/profile.lsf
 
+# REPLACED
+# add LSF-specific stuff to the path
+#export PATH=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/bin:$PATH
+#export PATH=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/etc:$PATH
+
+# REPLACED
 # more LSF stuff
-export LSF_BINDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/bin
-export LSF_SERVERDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/etc
-export LSF_LIBDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/lib
-export LD_LIBRARY_PATH=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/lib
-export XLSF_UIDDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/lib/uid
-export LSF_ENVDIR=/usr/local/lsf/conf
-export EGO_TOP=/usr/local/lsf
-export EGO_BINDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/bin
-export EGO_SERVERDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/etc
-export EGO_LIBDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/lib
-export EGO_CONFDIR=/usr/local/lsf/conf/ego/sam/kernel
-export EGO_LOCAL_CONFDIR=/usr/local/lsf/conf/ego/sam/kernel
-export EGO_ESRVDIR=/usr/local/lsf/conf/ego/sam/eservice
+#export LSF_BINDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/bin
+#export LSF_SERVERDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/etc
+#export LSF_LIBDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/lib
+#export LD_LIBRARY_PATH=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/lib
+#export XLSF_UIDDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/lib/uid
+#export LSF_ENVDIR=/usr/local/lsf/conf
+#export EGO_TOP=/usr/local/lsf
+#export EGO_BINDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/bin
+#export EGO_SERVERDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/etc
+#export EGO_LIBDIR=/usr/local/lsf/6.1/linux2.6-glibc2.3-x86/lib
+#export EGO_CONFDIR=/usr/local/lsf/conf/ego/sam/kernel
+#export EGO_LOCAL_CONFDIR=/usr/local/lsf/conf/ego/sam/kernel
+#export EGO_ESRVDIR=/usr/local/lsf/conf/ego/sam/eservice
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
