@@ -62,7 +62,8 @@ def _get_bsub_job_number(bsub_output):
     """
     matches = re.search('<([0-9]+)>', bsub_output)
     if not matches:
-        raise LSFError('no job number found in bsub output')
+        msg_a = 'No job number was found in the following bsub output.'
+        raise LSFError('\n'.join((msg_a, bsub_output)))
     groups = matches.groups()
     if len(groups) != 1:
         msg_a = 'expected one job number in bsub output'
