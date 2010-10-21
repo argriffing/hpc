@@ -92,7 +92,13 @@ class Bsub:
         @return: bsub stdout and stderr contents
         """
         p = subprocess.Popen(['bsub'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
-        out, err = p.communicate(str(self))
+        bscript = str(self)
+        try:
+            out, err = p.communicate(bscript)
+        except OSError as e:
+            msg_a = 'Got an OSError trying to feed bsub my inputs.'
+            msg_b = bscript
+            raise ValueError('\n'.join((msg_a, msg_b, str(e))))
         self.job_number = _get_bsub_job_number(out)
         return (out, err)
     def __str__(self):
